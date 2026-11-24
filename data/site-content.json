@@ -1,0 +1,841 @@
+{
+  "topBar": {
+    "address": "Al Muslim Street #5 Islam Nagar Road Pacca Garah Sialkot Pakistan",
+    "emails": [
+      "info@endotech.com.pk",
+      "ghafar@endotech.com.pk"
+    ],
+    "phone": "+92 52 4598114-16",
+    "mobile": "+92 300 8615456"
+  },
+  "nav": {
+    "leftLinks": [
+      {
+        "label": "HOME",
+        "href": "/"
+      },
+      {
+        "label": "ABOUT US",
+        "href": "/about"
+      },
+      {
+        "label": "PRODUCTS",
+        "href": "/products"
+      },
+      {
+        "label": "DEPARMENT",
+        "href": "/departments"
+      }
+    ],
+    "rightLinks": [
+      {
+        "label": "Sustainability",
+        "href": "/about#sustainability"
+      },
+      {
+        "label": "Resourcess",
+        "href": "/catalog"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact"
+      }
+    ]
+  },
+  "hero": {
+    "enabled": true,
+    "bannerMode": "standard",
+    "tagline": "PRECISION  /  QUALITY  /  BETTER CARE",
+    "titleLine1": "Kerrison",
+    "titleHighlight": "Rongeur",
+    "titleLine3": "I N S T R U M E N T S",
+    "subtitleLine1": "Engineered for Precision.",
+    "subtitleLine2": "Trusted in Every Procedure.",
+    "bannerImage": "/uploads/1795348699558-Rectangle_1090.png",
+    "primaryBtnText": "View Collection",
+    "primaryBtnLink": "/products",
+    "badges": [
+      {
+        "icon": "shield",
+        "title": "SURGICAL",
+        "desc": "GRADE STEEL"
+      },
+      {
+        "icon": "crosshair",
+        "title": "PRECISION",
+        "desc": "ENGINEERED"
+      },
+      {
+        "icon": "infinity",
+        "title": "DURABLE",
+        "desc": "PERFORMANCE"
+      }
+    ]
+  },
+  "aboutSection": {
+    "enabled": true,
+    "badge": "ABOUT US",
+    "titleLine1": "Built To Support",
+    "titleHighlight": "Surgery",
+    "title": "Built To Support Surgery",
+    "subtitle": "35+ Years of Dedicated Surgical Excellence",
+    "intro": "Established in 1990, Endo Techonology Group of Indutries. Is a trusted manufacturer and exporter of high-quality surgical instruments, offering a comprehensive portfolio of 3,000+ precision-engineered products.",
+    "description": "Established in 1990, Endo Techonology Group of Indutries. Is a trusted manufacturer and exporter of high-quality surgical instruments, offering a comprehensive portfolio of 3,000+ precision-engineered products.",
+    "features": [
+      {
+        "id": "feat-1",
+        "icon": "factory",
+        "title": "Sustainable Manufacturing",
+        "image": "/uploads/1795363315389-Packing___Sterilization-icon_1.png"
+      },
+      {
+        "id": "feat-2",
+        "icon": "cog",
+        "title": "Advanced Automation"
+      },
+      {
+        "id": "feat-3",
+        "icon": "truck",
+        "title": "Reliable Delivery Services"
+      }
+    ],
+    "paragraph1": "With decades of expertise, we combine advanced technology, skilled craftsmanship, and strict quality control to deliver reliable surgical instruments. Our custom manufacturing capabilities provide tailored solutions to meet diverse medical requirements.",
+    "paragraph2": "Our commitment to quality is backed by ISO 9001, ISO 13485, CE Mark, FDA, and CPRA/EU-MDR registrations. We ensure precision, reliability, and customer satisfaction through every stage of manufacturing and global delivery.",
+    "primaryBtnText": "EXPLORE OUR PRODUCTS",
+    "primaryBtnLink": "/products",
+    "secondaryBtnText": "LEARN MORE",
+    "secondaryBtnLink": "/about",
+    "image": "/uploads/1795349179850-35__Years_of_Medical_Precision.png",
+    "experienceBadge": {
+      "number": "35+",
+      "label": "YEARS OF EXPERIENCE"
+    },
+    "certifications": [
+      {
+        "id": "cert-1",
+        "icon": "shield",
+        "name": "ISO 9001",
+        "image": "/uploads/1795403394703-Packing___Sterilization-icon_1.png"
+      },
+      {
+        "id": "cert-2",
+        "icon": "award",
+        "name": "ISO 13485",
+        "image": "/uploads/1795403394706-Precision_1.png"
+      },
+      {
+        "id": "cert-3",
+        "icon": "check",
+        "name": "CE MARK",
+        "image": "/uploads/1795403405412-Reliable_1.png"
+      },
+      {
+        "id": "cert-4",
+        "icon": "badge",
+        "name": "FDA"
+      },
+      {
+        "id": "cert-5",
+        "icon": "globe",
+        "name": "CPRA/EU-MDR"
+      }
+    ],
+    "pillars": [
+      {
+        "title": "100% Surgical Stainless Steel",
+        "desc": "Manufactured strictly using AISI 420 & 440 German and Japanese certified medical alloys."
+      },
+      {
+        "title": "Handcrafted & CNC Perfected",
+        "desc": "Master craftsmen hand-finish each cutting edge to micro-millimeter precision tolerances."
+      },
+      {
+        "title": "Global Compliance & Trust",
+        "desc": "Fully certified under ISO 13485:2016, CE Medical Device Directives, and US FDA."
+      }
+    ]
+  },
+  "productsSection": {
+    "enabled": true,
+    "badge": "SURGICAL INSTRUMENTS",
+    "title": "Featured Surgical Products",
+    "subtitle": "Explore our flagship instruments crafted for delicate orthopedic, spinal, and microsurgical procedures.",
+    "categories": [
+      {
+        "id": "all",
+        "name": "All Instruments"
+      },
+      {
+        "id": "kerrison-rongeurs",
+        "name": "Kerrison Rongeurs"
+      },
+      {
+        "id": "needle-holders",
+        "name": "Needle Holders"
+      },
+      {
+        "id": "bone-punches",
+        "name": "Bone Punches"
+      },
+      {
+        "id": "scissors",
+        "name": "Surgical Scissors"
+      },
+      {
+        "id": "forceps",
+        "name": "Forceps & Clamps"
+      }
+    ]
+  },
+  "precisionSection": {
+    "enabled": true,
+    "badge": "MANUFACTURING EXCELLENCE",
+    "title": "State-of-the-Art Precision Manufacturing",
+    "subtitle": "Every instrument undergoes a rigorous 24-step quality assurance process, from vacuum heat treatment to final laser marking.",
+    "image": "/images/extracted/image0_4480_2.png",
+    "stats": [
+      {
+        "number": "1,500+",
+        "label": "Instruments Portfolio"
+      },
+      {
+        "number": "45+",
+        "label": "Export Destinations"
+      },
+      {
+        "number": "35+",
+        "label": "Years in Industry"
+      },
+      {
+        "number": "100%",
+        "label": "Pre-shipment Inspection"
+      }
+    ]
+  },
+  "videoSection": {
+    "enabled": true,
+    "badge": "FACILITY TOUR",
+    "title": "Take a Look Inside Our Production Facility",
+    "subtitle": "See how our master craftsmen and advanced CNC technology work together in Sialkot, Pakistan to produce world-class medical instruments.",
+    "bannerImage": "/images/video/factory-video-banner.png",
+    "playIcon": "/images/extracted/image14_4480_2.png",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  "certificationsSection": {
+    "enabled": true,
+    "badge": "CERTIFIED QUALITY",
+    "title": "International Quality & Regulatory Certifications",
+    "subtitle": "Our manufacturing operations strictly conform to global medical device standards, ensuring patient safety and procedural reliability.",
+    "image": "/images/extracted/image15_4480_2.png",
+    "certs": [
+      {
+        "name": "ISO 13485:2016",
+        "desc": "Medical Devices Quality Management Systems"
+      },
+      {
+        "name": "CE Mark (MDR 2017/745)",
+        "desc": "Conformity to European Health & Safety Standards"
+      },
+      {
+        "name": "US FDA Registered",
+        "desc": "Approved for import and clinical use in the United States"
+      },
+      {
+        "name": "cGMP Compliant",
+        "desc": "Current Good Manufacturing Practice certified"
+      }
+    ]
+  },
+  "ctaSection": {
+    "enabled": true,
+    "title": "Partner With a Trusted Surgical Instruments Manufacturer",
+    "subtitle": "We supply hospitals, surgical distributors, and medical procurement teams worldwide with custom OEM/ODM solutions, bulk orders, and private labeling.",
+    "primaryBtnText": "Request a Custom Quote",
+    "primaryBtnLink": "/contact",
+    "secondaryBtnText": "Download 2026 Catalogue",
+    "secondaryBtnLink": "/catalog"
+  },
+  "globalReachSection": {
+    "enabled": true,
+    "badge": "WORLDWIDE NETWORK",
+    "title": "Exporting Surgical Precision to Over 45 Countries",
+    "subtitle": "Trusted by surgeons and hospital chains in the USA, Germany, United Kingdom, Japan, United Arab Emirates, and beyond.",
+    "image": "/images/extracted/image8_4480_2.png"
+  },
+  "footer": {
+    "aboutText": "For over 35 years, Endo Tech Group of Industries has been a premier manufacturer and exporter of precision surgical instruments, delivering uncompromising quality, reliability, and innovation to operating theaters worldwide.",
+    "copyright": "© 2026 Endo Tech Group of Industries. All Rights Reserved."
+  },
+  "categoriesSection": {
+    "enabled": true,
+    "tag": "OUR PRODUCT CATEGORIES",
+    "titleLine1": "Your Global Partner In Medical",
+    "titleHighlight": "Instrument Manufacturing",
+    "description": "High-Quality Instruments Designed For Precision, Performance And Patient Safety. Explore Our Complete Range Of Surgical And Medical Solutions.",
+    "trustBadges": [
+      {
+        "id": "badge-1",
+        "icon": "shield",
+        "title": "Premium Quality",
+        "subtitle": "Built For Reliability"
+      },
+      {
+        "id": "badge-2",
+        "icon": "crosshair",
+        "title": "Precision Engineering",
+        "subtitle": "For Better Results"
+      },
+      {
+        "id": "badge-3",
+        "icon": "gears",
+        "title": "Global Standards",
+        "subtitle": "ISO & FDA Compliant"
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-1",
+        "number": "01",
+        "title": "GENERAL SURGERY",
+        "subtitle": "Precision Instruments For All Surgical Discipline",
+        "image": "/images/categories/general-surgery.png",
+        "buttonText": "VIEW PRODUCT RANGE",
+        "buttonLink": "/products?category=general-surgery",
+        "buttonVariant": "outline"
+      },
+      {
+        "id": "cat-2",
+        "number": "02",
+        "title": "DENTAL INSTRUMENTS",
+        "subtitle": "Precision Instruments For All Surgical Discipline",
+        "image": "/uploads/1795363831387-image_437.png",
+        "buttonText": "VIEW PRODUCT RANGE",
+        "buttonLink": "/products?category=dental-instruments",
+        "buttonVariant": "outline"
+      },
+      {
+        "id": "cat-3",
+        "number": "03",
+        "title": "ENT (EAR, NOSE, THROAT)",
+        "subtitle": "Precision Instruments For All Surgical Discipline",
+        "image": "/images/categories/ent.png",
+        "buttonText": "VIEW PRODUCT RANGE",
+        "buttonLink": "/products?category=ent",
+        "buttonVariant": "outline"
+      },
+      {
+        "id": "cat-4",
+        "number": "04",
+        "title": "GYNECOLOGY",
+        "subtitle": "Precision Instruments For All Surgical Discipline",
+        "image": "/images/categories/gynecology.png",
+        "buttonText": "VIEW PRODUCT RANGE",
+        "buttonLink": "/products?category=gynecology",
+        "buttonVariant": "outline"
+      },
+      {
+        "id": "cat-5",
+        "number": "05",
+        "title": "ORTHOPEDICS",
+        "subtitle": "Precision Instruments For All Surgical Discipline",
+        "image": "/images/categories/orthopedics.png",
+        "buttonText": "VIEW PRODUCT RANGE",
+        "buttonLink": "/products?category=orthopedics",
+        "buttonVariant": "outline"
+      }
+    ]
+  },
+  "whatWeDoSection": {
+    "enabled": true,
+    "tag": "WHAT WE DO",
+    "titleLine1": "Reliable Surgical Solutions",
+    "titleLine2Prefix": "for ",
+    "titleHighlight": "Every Need",
+    "subtitleLine1": "Precision manufacturing. Global standards.",
+    "subtitleLine2": "Your trusted partner in surgical excellence.",
+    "leftVisual": {
+      "image": "/uploads/1795367034089-Gemini_Generated_Image_vy1e3avy1e3avy1e.jpeg",
+      "overlayText": "Precision at every stage."
+    },
+    "cards": [
+      {
+        "id": "wwd-1",
+        "number": "01",
+        "icon": "factory",
+        "title": "OEM & Private Label",
+        "description": "Manufactured to your brand specifications, with confidentiality and compliance support. This the endo tech compnay for surgical products. ",
+        "customIcon": "/uploads/1795366438322-Reliable_1.png"
+      },
+      {
+        "id": "wwd-2",
+        "number": "02",
+        "icon": "rack",
+        "title": "Reusable & Single-Use Instruments",
+        "description": "A versatile range built around your surgical requirements."
+      },
+      {
+        "id": "wwd-3",
+        "number": "03",
+        "icon": "door-shield",
+        "title": "Regulatory Compliance Expertise",
+        "description": "Support for product documentation and applicable regulatory requirements."
+      },
+      {
+        "id": "wwd-4",
+        "number": "04",
+        "icon": "packaging",
+        "title": "Clean Room Packaging",
+        "description": "Controlled packaging processes designed to protect instrument integrity."
+      }
+    ],
+    "buttonText": "Explore Our Range",
+    "buttonLink": "/products"
+  },
+  "advancedSolutionsSection": {
+    "enabled": true,
+    "tag": "PRECISION. QUALITY. TRUST",
+    "titleLine1": "ADVANCED MEDICAL",
+    "titleHighlight": "PRODUCT SOLUTIONS.",
+    "paragraph1": "We Manufacture Premium Surgical & Dental Instruments For OEM, Private Label, And Sterile Kitting, Using High-Grade German & Japanese Stainless Steel To Meet DIN And ISO/ASTM Standards.",
+    "paragraph2": "Available In Reusable, Single-Use, And EO-Sterilized Options.",
+    "buttonText": "EXPLORE OUR PRODUCTS",
+    "buttonLink": "/products",
+    "bannerImage": "/uploads/1795415872441-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpeg",
+    "capabilitiesTag": "BUILT TO PERFORM",
+    "capabilitiesTitle": "MADE TO LAST.",
+    "capabilitiesCards": [
+      {
+        "id": "cap-1",
+        "icon": "book",
+        "title": "Product Catalogs",
+        "description": "Explore Our Comprehensive Range Of Surgical Instruments Designed For Precision And Professional Use.  ",
+        "linkText": "View Catalogs",
+        "linkUrl": "/uploads/1795401459149-Endo_Tech_Surgical_Instruments_Catalog.pdf",
+        "catalogFileName": "Endo Tech Surgical Instruments Catalog.pdf"
+      },
+      {
+        "id": "cap-2",
+        "icon": "shield",
+        "title": "Quality Standards",
+        "description": "Manufactured To DIN And ISO/ASTM Standards With Strict Quality Control To  Ensure  Reliability And Safety.",
+        "linkText": "View Catalogs",
+        "linkUrl": "/about#standards"
+      },
+      {
+        "id": "cap-3",
+        "icon": "building",
+        "title": "OEM / Private Label",
+        "description": "Custom Manufacturing, Private Label Branding And Sterile Kitting Solutions Tailored To Your Business Needs.",
+        "linkText": "View Catalogs",
+        "linkUrl": "/contact?service=oem"
+      },
+      {
+        "id": "cap-4",
+        "icon": "layers",
+        "title": "Materials & Sterilization",
+        "description": "Premium German & Japanese Stainless Steel With Options For Reusable, Single-Use And EO Sterilized Configurations.",
+        "linkText": "View Catalogs",
+        "linkUrl": "/about#materials"
+      }
+    ],
+    "talkTitleLine1": "Let's Talk About",
+    "talkTitleLine2": "Your Instrument.",
+    "talkParagraph": "Whether Product Advice, Partnership Or A Visit To Our Production, We Look Forward To Hearing From You And Will Get Back To You Promptly.  ",
+    "primaryBtnText": "GET IN TOUCH",
+    "primaryBtnLink": "/contact",
+    "secondaryBtnText": "DOWNLOAD CATALOGUE",
+    "secondaryBtnLink": "/catalog"
+  },
+  "globalStandardsSection": {
+    "enabled": true,
+    "compTag": "OUR COMPLIANCES",
+    "compTitleLine1": "Global Standards.",
+    "compTitleHighlight": "Trusted Quality.",
+    "compParagraph": "We follow internationally recognized standards to ensure safety, quality and reliability in every product we deliver.",
+    "compImage": "/uploads/1795412605649-Gemini_Generated_Image_mf2te4mf2te4mf2t.jpeg",
+    "toolsTag": "OUR HEALTH CARE",
+    "toolsTitleLine1": "Are you ready to get",
+    "toolsTitleHighlight": "customized tools?",
+    "toolsParagraph": "We offer tailored surgical instruments to meet your specific needs and requirements.",
+    "toolsBtnText": "Contact Now",
+    "toolsBtnLink": "/contact",
+    "toolsImage": "/uploads/1795403831587-Gemini_Generated_Image_wtqo2ywtqo2ywtqo.jpeg",
+    "eventsTitleLine1": "Stay Updated with Our",
+    "eventsTitleHighlight": "Upcoming Activities",
+    "eventsParagraph": "Be the first to know about new launches, exhibitions, and latest updates.",
+    "eventsBtnText": "View Events",
+    "eventsBtnLink": "/events",
+    "exportTag": "EXPORT DESTINATIONS",
+    "exportTitleLine1": "Trusted Worldwide",
+    "exportTitleLine2": "From Our Factory",
+    "exportTitleHighlight": "to Your Market",
+    "exportParagraph": "We export high-quality surgical instruments to countries across the globe, ensuring reliable supply and lasting partnerships.",
+    "exportGlobeImage": "/uploads/1795404082787-Gemini_Generated_Image_1ckv5w1ckv5w1ckv.jpeg",
+    "exportStat1Number": "250+",
+    "exportStat1Label": "Qualified Staff",
+    "exportStat2Number": "10000+",
+    "exportStat2Label": "Instruments",
+    "exportSlogan": "PROUDLY SERVING HEALTHCARE GLOBALLY"
+  },
+  "productPage": {
+    "bannerTitleLine1": "RELIABLE HEALTHCARE PRODUCTS.",
+    "bannerTitleHighlight": "ADVANCED SOLUTIONS.",
+    "bannerImage": "/uploads/1795423436544-Rectangle_854.jpg",
+    "categories": [
+      {
+        "id": "cat-gen",
+        "name": "General Instrumentation",
+        "slug": "general-instrumentation",
+        "subcategories": [
+          "Scalpels",
+          "Scissors",
+          "Forceps",
+          "Artery Forceps",
+          "Cotton Swab Forceps",
+          "Retractors",
+          "Probes, Applicators, Spatulas",
+          "Diagnostics",
+          "Trocars, Suction Tubes, Cannulas",
+          "Anaesthesia",
+          "Suture",
+          "Dressings",
+          "Bone Surgery",
+          "Cardiovascular / Neuro",
+          "Neurosurgery",
+          "Tracheotomy",
+          "Dermatology",
+          "Stomach, Intestines, Rectum",
+          "Urology",
+          "Gynaecology",
+          "Obstetrics",
+          "Calipers",
+          "Otology",
+          "Rhinology",
+          "Tonsillectomy, Laryngo-Bronchoscopy",
+          "Hygiene, Storage",
+          "Oral Maxillo-Facial Surgery",
+          "Cranio-Maxillo-Facial Surgery",
+          "Asepsis",
+          "Needle Holders",
+          "Extracting Forceps",
+          "Dental Elevators",
+          "Dental And Oral Surgery"
+        ]
+      },
+      {
+        "id": "cat-dental",
+        "name": "Dental Instruments",
+        "slug": "dental-instruments",
+        "subcategories": [
+          "Dental Elevators",
+          "Extracting Forceps",
+          "Scaling Instruments",
+          "Filling Instruments",
+          "Orthodontic Pliers",
+          "Mouth Mirrors & Handles",
+          "Periodontal Probes",
+          "Root Tip Picks"
+        ]
+      },
+      {
+        "id": "cat-ent",
+        "name": "ENT Instruments",
+        "slug": "ent-instruments",
+        "subcategories": [
+          "Laryngeal Cup Forceps",
+          "Nose Speculums",
+          "Ear Curettes",
+          "Otology Forceps",
+          "Tuning Forks",
+          "Nasal Snares"
+        ]
+      },
+      {
+        "id": "cat-ortho",
+        "name": "Orthopedic Instruments",
+        "slug": "orthopedic-instruments",
+        "subcategories": [
+          "Kerrison Rongeurs",
+          "Bone Punches",
+          "Bone Holding Forceps",
+          "Bone Chisels & Gouges",
+          "Wire Cutters & Pliers",
+          "Mallets & Tampers",
+          "Plate Benders"
+        ]
+      }
+    ],
+    "helpTitle": "Can't find what you need?",
+    "helpSubtitle": "Our team is here to help.",
+    "helpButtonText": "Contact Us",
+    "helpButtonLink": "/contact"
+  },
+  "departmentsPage": {
+    "bannerHeadline": "FACILITIES, SPECIALTIES & MANUFACTURING EXCELLENCE",
+    "bannerTitleLine1": "CLINICAL SPECIALTIES &",
+    "bannerTitleHighlight": "MANUFACTURING DEPARTMENTS.",
+    "bannerImage": "/uploads/1795490502780-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+    "subtitle": "From specialized surgical disciplines to advanced metallurgy and cleanroom passivation, explore how Endo Tech delivers surgical excellence.",
+    "clinicalSpecialties": [
+      {
+        "id": "spec-1",
+        "code": "01",
+        "name": "General Surgery",
+        "slug": "general-instrumentation",
+        "description": "High-precision scalpel handles, surgical scissors, tissue forceps, hemostatic clamps, and wound retractors engineered for all surgical disciplines."
+      },
+      {
+        "id": "spec-2",
+        "code": "02",
+        "name": "Dental & Oral Maxillofacial",
+        "slug": "dental-instruments",
+        "description": "Ergonomic extracting forceps, dental elevators, periosteal instruments, scalers, and micro-pliers conforming to international dental standards."
+      },
+      {
+        "id": "spec-3",
+        "code": "03",
+        "name": "ENT (Otolaryngology)",
+        "slug": "ent-instruments",
+        "description": "Specialized micro-laryngeal cup forceps, nasal speculums, ear curettes, and sinus endoscopy instruments for delicate head and neck surgery."
+      },
+      {
+        "id": "spec-4",
+        "code": "04",
+        "name": "Orthopedics & Spine Surgery",
+        "slug": "orthopedics",
+        "description": "High-torque Kerrison rongeurs, bone holding forceps, bone chisels, osteotomes, and plate benders made from high-strength German stainless steel."
+      },
+      {
+        "id": "spec-5",
+        "code": "05",
+        "name": "Gynecology & Obstetrics",
+        "slug": "gynecology",
+        "description": "Vaginal speculums, uterine dilators, biopsy punches, ovum forceps, and caesarean instruments designed for patient safety and procedural efficiency."
+      },
+      {
+        "id": "spec-6",
+        "code": "06",
+        "name": "Cardiovascular & Micro-Surgery",
+        "slug": "general-instrumentation",
+        "description": "Micro-needle holders with tungsten carbide inserts, atraumatic vascular clamps, and micro-scissors for high-magnification surgical procedures."
+      }
+    ],
+    "manufacturingDivisions": [
+      {
+        "id": "mfg-1",
+        "title": "Hot Drop-Forging & Precision Tooling",
+        "desc": "High-tonnage forging presses creating closed-die blanks from certified medical-grade AISI 420 and German stainless steel.",
+        "badge": "DIVISION 01"
+      },
+      {
+        "id": "mfg-2",
+        "title": "CNC 5-Axis Milling & Micro-Machining",
+        "desc": "German computer numerical control machining centers ensuring micron-level accuracy for bone punches, rongeurs, and micro-scissors.",
+        "badge": "DIVISION 02"
+      },
+      {
+        "id": "mfg-3",
+        "title": "Master Toolmaker Hand-Finishing & Assembly",
+        "desc": "Generations of master metallurgical craftsmen hand-aligning tips, adjusting spring tensions, and balancing instruments for surgical feel.",
+        "badge": "DIVISION 03"
+      },
+      {
+        "id": "mfg-4",
+        "title": "Class 10,000 Cleanroom & Ultrasonic Passivation",
+        "desc": "Multi-stage automated ultrasonic cleaning baths, nitric acid chemical passivation, and sterile barrier packaging conforming to ISO 13485.",
+        "badge": "DIVISION 04"
+      }
+    ]
+  },
+  "aboutPage": {
+    "bannerHeadline": "OVER 35 YEARS OF MANUFACTURING EXCELLENCE",
+    "bannerTitleLine1": "CARE WITH TRUST IN SURGERY.",
+    "bannerTitleHighlight": "EVERY INSTRUMENT, EVERY CUT.",
+    "bannerImage": "/uploads/1795489849764-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+    "missionSubtitle": "OUR MISSION & GLOBAL HERITAGE",
+    "missionTitle": "Care with Trust... Dedicated to Surgical Precision.",
+    "missionText1": "Founded in Sialkot, Pakistan – the world's historic hub for surgical instrument manufacturing – Endo Tech Group of Industries has grown into an international powerhouse supplying hospital networks, healthcare authorities, and premium distributor brands across 65+ nations.",
+    "missionText2": "We operate under comprehensive Quality Management Systems conforming to ISO 9001:2015, ISO 13485:2016, European CE Medical Device Regulations (MDR), and US FDA Good Manufacturing Practices (cGMP).",
+    "buttonText": "Explore Product Range",
+    "buttonLink": "/products",
+    "stats": [
+      {
+        "value": 250,
+        "suffix": "+",
+        "label": "Skilled Toolmakers",
+        "description": "Master metallurgical craftsmen"
+      },
+      {
+        "value": 10000,
+        "suffix": "+",
+        "label": "Instruments Portfolio",
+        "description": "From standard scalpel to micro-neuro"
+      },
+      {
+        "value": 65,
+        "suffix": "+",
+        "label": "Export Destinations",
+        "description": "Supplying premier hospitals worldwide"
+      },
+      {
+        "value": 35,
+        "suffix": "+",
+        "label": "Years Experience",
+        "description": "Continuous surgical innovation"
+      }
+    ],
+    "accreditations": [
+      {
+        "title": "ISO 13485:2016 Certified",
+        "desc": "Medical Devices Quality Management System certification for international export."
+      },
+      {
+        "title": "CE Marking (EU MDR)",
+        "desc": "Class I and Class IIa surgical conformity marking for the European Union."
+      },
+      {
+        "title": "US FDA Registered (cGMP)",
+        "desc": "Listed medical device establishment compliance with US FDA regulations."
+      },
+      {
+        "title": "Sialkot Chamber of Commerce",
+        "desc": "Member in good standing with the Surgical Instruments Manufacturers Association of Pakistan (SIMAP)."
+      }
+    ]
+  },
+  "resourcesPage": {
+    "bannerHeadline": "TECHNICAL DOCUMENTATION & LITERATURE",
+    "bannerTitleLine1": "OFFICIAL PRODUCT CATALOGUES.",
+    "bannerTitleHighlight": "DOWNLOAD SPECIFICATIONS.",
+    "bannerImage": "/uploads/1795490516950-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+    "subtitle": "Access our official high-resolution PDF catalogues featuring over 10,000 surgical, dental, ENT, and orthopedic instruments with full technical dimensions and article codes.",
+    "catalogs": [
+      {
+        "id": "cat-1",
+        "title": "General Surgery Complete Catalogue",
+        "category_name": "General Surgery aromatic ",
+        "description": "Comprehensive guide to scalpels, forceps, scissors, retractors, needle holders, and general surgical instruments.",
+        "file_url": "/uploads/1795493133579-Endo_Tech_Surgical_Instruments_Catalog.pdf",
+        "file_size": "18.4 MB",
+        "downloads_count": 3420
+      },
+      {
+        "id": "cat-2",
+        "title": "Dental & Oral Surgery Catalogue",
+        "category_name": "Dental Instruments",
+        "description": "Extracting forceps, dental elevators, scaling instruments, filling tools, and orthodontic pliers.",
+        "file_url": "/catalogs/dental-instruments.pdf",
+        "file_size": "14.2 MB",
+        "downloads_count": 2180
+      },
+      {
+        "id": "cat-3",
+        "title": "ENT & Laryngeal Instruments Catalogue",
+        "category_name": "ENT Instruments",
+        "description": "Micro-laryngeal cup forceps, ear curettes, nasal speculums, and otology instruments.",
+        "file_url": "/catalogs/ent-instruments.pdf",
+        "file_size": "11.6 MB",
+        "downloads_count": 1890
+      },
+      {
+        "id": "cat-4",
+        "title": "Orthopedics & Spine Catalogue",
+        "category_name": "Orthopedic Instruments",
+        "description": "Kerrison rongeurs, bone punches, bone holding forceps, chisels, mallets, and plate benders.",
+        "file_url": "/catalogs/orthopedics.pdf",
+        "file_size": "22.1 MB",
+        "downloads_count": 2740
+      },
+      {
+        "id": "cat-1795493137171",
+        "title": "New Surgical Catalogue",
+        "category_name": "General Surgery",
+        "description": "Comprehensive guide to specialized medical instruments.",
+        "file_url": "/catalogs/general-surgery.pdf",
+        "file_size": "15.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "cat-1795493236063",
+        "title": "New Surgical Catalogue",
+        "category_name": "General Surgery",
+        "description": "Comprehensive guide to specialized medical instruments.",
+        "file_url": "/catalogs/general-surgery.pdf",
+        "file_size": "15.0 MB",
+        "downloads_count": 1000
+      }
+    ]
+  },
+  "sustainabilityPage": {
+    "bannerHeadline": "ENVIRONMENTAL RESPONSIBILITY & GREEN MANUFACTURING",
+    "bannerTitleLine1": "SUSTAINABLE SURGICAL SOLUTIONS.",
+    "bannerTitleHighlight": "PROTECTING OUR PLANET.",
+    "bannerImage": "/uploads/1795490529710-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+    "introText": "At Endo Tech Group of Industries, we believe that advancing healthcare must not come at the expense of our planet. Our green manufacturing initiatives in Sialkot integrate renewable energy, zero chemical discharge, and circular metallurgical recycling.",
+    "initiatives": [
+      {
+        "id": "init-1",
+        "title": "100% Recyclable Medical-Grade Steel",
+        "desc": "All AISI 420 and German stainless steel offcuts and swarf are 100% segregated and recycled into secondary industrial processes, achieving near-zero metallurgical scrap.",
+        "icon": "recycle"
+      },
+      {
+        "id": "init-2",
+        "title": "Solar Powered Clean Facility",
+        "desc": "Our manufacturing campus operates a 250 kW on-site rooftop solar photovoltaic system, reducing carbon emissions by 180 metric tons annually.",
+        "icon": "sun"
+      },
+      {
+        "id": "init-3",
+        "title": "Zero Liquid Discharge (ZLD) Effluent Plant",
+        "desc": "All electropolishing, ultrasonic washing, and passivating wastewater undergoes multi-stage chemical and biological treatment, recycling clean water back into processing.",
+        "icon": "droplets"
+      },
+      {
+        "id": "init-4",
+        "title": "Eco-Friendly Biodegradable Packaging",
+        "desc": "Non-sterile bulk packaging uses 100% recycled unbleached cardboard and water-soluble protective coatings, eliminating single-use plastics.",
+        "icon": "leaf"
+      }
+    ],
+    "stats": [
+      {
+        "value": "100",
+        "suffix": "%",
+        "label": "Recyclable Steel",
+        "desc": "Zero metallurgical landfill waste"
+      },
+      {
+        "value": "45",
+        "suffix": "%",
+        "label": "Solar Energy Powered",
+        "desc": "Clean energy CNC machining"
+      },
+      {
+        "value": "Zero",
+        "suffix": "",
+        "label": "Liquid Discharge",
+        "desc": "Full closed-loop water treatment"
+      },
+      {
+        "value": "ISO 14001",
+        "suffix": "",
+        "label": "Environmental Audit",
+        "desc": "Ecological compliance"
+      }
+    ]
+  },
+  "contactPage": {
+    "bannerHeadline": "DIRECT FACTORY COMMUNICATION & EXPORT INQUIRIES",
+    "bannerTitleLine1": "CONNECT WITH FACTORY EXPORT TEAM.",
+    "bannerTitleHighlight": "FAST GLOBAL RESPONSE.",
+    "bannerImage": "/uploads/1795490554827-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+    "address": "Al Muslim Street #5 Islam Nagar Road, Pacca Garah, Sialkot, Punjab 51310 Pakistan",
+    "phone": "+92 52 4598114-16 (Ext 102/104)",
+    "mobile": "+92 300 8614441",
+    "primaryEmail": "info@endotech.com.pk",
+    "directEmail": "ghafar@endotech.com.pk",
+    "workingHours": "Monday – Saturday: 08:30 AM – 06:00 PM (PKT / GMT+5)",
+    "inquiryNote": "Our commercial managers respond to all wholesale and OEM requests within 12 business hours."
+  }
+}

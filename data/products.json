@@ -1,0 +1,77 @@
+[
+  {
+    "id": "prod-sh-09",
+    "code": "SH-09",
+    "name": "Scalpel Handle No. 9",
+    "slug": "scalpel-handle-no-9",
+    "category": "general-instrumentation",
+    "subcategory": "Scalpels",
+    "product_type": "Scalpel Handles",
+    "pattern": "Fine Straight",
+    "cup_size": "11.5 cm",
+    "length": "11.5 cm",
+    "description": "Micro-surgical fine scalpel handle No. 9 for ophthalmic, plastic, and delicate general surgery procedures. High-precision tactile feedback grip forged from premium German stainless steel. Aromatic Surgery is neccessary ",
+    "image": "/uploads/1795430545203-image_437.png",
+    "gallery": [
+      "/uploads/1795430561426-Gemini_Generated_Image_ohw4bsohw4bsohw4.jpg",
+      "/uploads/1795430569603-Gemini_Generated_Image_wtqo2ywtqo2ywtqo.jpg"
+    ],
+    "isFeatured": true,
+    "material": "AISI 420 Surgical Stainless Steel",
+    "stock": "In Stock",
+    "size_options": [
+      "11.5 cm",
+      "13.5 cm"
+    ],
+    "specs": [
+      {
+        "label": "Product",
+        "value": "Scalpel Handle No. 9"
+      },
+      {
+        "label": "Article Number",
+        "value": "SH-09"
+      },
+      {
+        "label": "Pattern",
+        "value": "Fine Straight"
+      },
+      {
+        "label": "Blade Compatibility",
+        "value": "Fits Blades No. 10, 11, 12, 15"
+      },
+      {
+        "label": "Length",
+        "value": "11.5 cm"
+      },
+      {
+        "label": "Material",
+        "value": "AISI 420 Medical Grade Stainless Steel"
+      },
+      {
+        "label": "Finish",
+        "value": "Satin Matte Anti-Glare"
+      }
+    ],
+    "sizes_table": [
+      {
+        "article_number": "SH-09",
+        "pattern": "Fine Straight",
+        "cup_size": "Standard",
+        "length": "11.5 cm"
+      },
+      {
+        "article_number": "SH-03L",
+        "pattern": "Long Straight",
+        "cup_size": "Standard",
+        "length": "21 cm"
+      },
+      {
+        "article_number": "SH-04L",
+        "pattern": "Long Straight Heavy",
+        "cup_size": "Standard",
+        "length": "21 cm"
+      }
+    ]
+  }
+]
