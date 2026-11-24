@@ -95,9 +95,9 @@ function FallingDropTag({
 }
 
 /**
- * Character-by-Character animated headline (Flying / Dropping Spring Animation)
- * Characters fly/drop from the top with spring physics on scroll down/up,
- * and retrigger a fresh wave on mouse hover!
+ * Character-by-Character animated headline (Exact SS 3 Animation: "Let's Talk About Your Instrument")
+ * Characters flip up in 3D with spring physics on scroll,
+ * and hovering across the line triggers a synchronized wave ripple across each character!
  * Words are wrapped in whitespace-nowrap wrappers so words NEVER break mid-word!
  */
 function CharSwipeLine({
@@ -113,19 +113,15 @@ function CharSwipeLine({
   baseDelay?: number;
   fontSizeClass?: string;
 }) {
-  const [hoverKey, setHoverKey] = useState(0);
-
-  const handleMouseEnter = () => {
-    setHoverKey((prev) => prev + 1);
-  };
-
+  const [isHovered, setIsHovered] = useState(false);
   const words = text.split(" ");
   let globalCharIndex = 0;
 
   return (
     <span
       className={`inline-block cursor-pointer select-none ${fontSizeClass}`}
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {words.map((word, wIdx) => {
         const wordChars = Array.from(word);
@@ -136,33 +132,42 @@ function CharSwipeLine({
           <span key={wIdx} className="inline-block whitespace-nowrap mr-[0.26em] last:mr-0">
             {wordChars.map((char, cIdx) => {
               const charIndex = startIndex + cIdx;
-              const dropDelay = baseDelay + charIndex * 0.035;
+              const charDelay = baseDelay + charIndex * 0.022;
+              const waveDelay = charIndex * 0.028;
 
               return (
                 <motion.span
-                  key={`${hoverKey}-${charIndex}`}
-                  className="inline-block relative origin-top"
-                  style={{ color: textColor }}
-                  initial={{ opacity: 0, y: -45, rotate: -8 }}
+                  key={cIdx}
+                  className="inline-block relative origin-bottom transition-colors duration-200"
+                  style={{
+                    color: isHovered && hoverColor ? hoverColor : textColor,
+                  }}
+                  initial={{ opacity: 0, y: 35, rotateX: -60 }}
                   whileInView={{
                     opacity: 1,
                     y: 0,
-                    rotate: 0,
+                    rotateX: 0,
                     transition: {
                       type: "spring",
-                      stiffness: 420,
-                      damping: 14,
-                      mass: 0.7,
-                      delay: dropDelay,
+                      stiffness: 320,
+                      damping: 18,
+                      delay: charDelay,
                     },
                   }}
-                  viewport={{ once: false, amount: 0.05 }}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.15,
-                    color: hoverColor || textColor,
-                    transition: { type: "spring", stiffness: 450, damping: 10 },
-                  }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  animate={
+                    isHovered
+                      ? {
+                          y: [-3, -12, 0],
+                          scale: [1, 1.14, 1],
+                          transition: {
+                            duration: 0.45,
+                            delay: waveDelay,
+                            ease: [0.22, 1, 0.36, 1],
+                          },
+                        }
+                      : { y: 0, scale: 1 }
+                  }
                 >
                   {char}
                 </motion.span>
