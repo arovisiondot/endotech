@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 import { Search, ArrowRight } from "lucide-react";
 import { useContent } from "@/context/ContentContext";
+import MainCategoryCards from "@/components/MainCategoryCards";
 
 /**
  * Character-by-Character falling gravity drop breadcrumb
@@ -552,7 +553,33 @@ function ProductsContent() {
         </motion.div>
 
         {/* ================================================================= */}
-        {/* 2. FILTER & SEARCH CONTROLS ROW                                  */}
+        {/* 2. MAIN CATEGORIES CARDS (Continuous Running Light Animation)     */}
+        {/* ================================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200/80"
+        >
+          <MainCategoryCards
+            categories={categoriesList}
+            activeSlug={selectedCategorySlug}
+            onSelectCategory={(slug) => {
+              setSelectedCategorySlug(slug);
+              const found = categoriesList.find((c: any) => c.slug === slug);
+              if (found && found.subcategories?.length > 0) {
+                setSelectedSubcategory(found.subcategories[0]);
+              } else {
+                setSelectedSubcategory("all");
+              }
+              document.getElementById("subcategories-section")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          />
+        </motion.div>
+
+        {/* ================================================================= */}
+        {/* 3. FILTER & SEARCH CONTROLS ROW                                  */}
         {/* ================================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -609,14 +636,15 @@ function ProductsContent() {
         </motion.div>
 
         {/* ================================================================= */}
-        {/* 3. BROWSE SUB-CATEGORIES (3-Column Grid with Left/Right Corners)  */}
+        {/* 4. BROWSE SUB-CATEGORIES (3-Column Grid with Left/Right Corners)  */}
         {/* ================================================================= */}
         <motion.div
+          id="subcategories-section"
           initial={{ opacity: 0, x: -80, y: 35, scale: 0.98 }}
           whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-          className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200/80 space-y-6"
+          className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200/80 space-y-6 scroll-mt-6"
         >
           {/* Header Row: Navbar-Style Animated Title on Left, Falling Drop Anim on Count */}
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">

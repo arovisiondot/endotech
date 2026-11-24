@@ -69,8 +69,35 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
       if (prodRes.ok) {
         const liveProducts = await prodRes.json();
-        if (Array.isArray(liveProducts) && liveProducts.length > 0) {
-          setProducts(liveProducts);
+        if (Array.isArray(liveProducts)) {
+          let merged = [...liveProducts];
+          if (typeof window !== "undefined") {
+            try {
+              // 1. Filter out any products user explicitly deleted
+              const deletedIdsRaw = localStorage.getItem("endotech_deleted_product_ids");
+              const deletedIds: string[] = deletedIdsRaw ? JSON.parse(deletedIdsRaw) : [];
+              if (deletedIds.length > 0) {
+                merged = merged.filter((p: any) => !deletedIds.includes(p.id));
+              }
+
+              // 2. Preserve any user-created products from localStorage that aren't yet in server response
+              const localProdsRaw = localStorage.getItem("endotech_products_list");
+              if (localProdsRaw) {
+                const localProds: ProductItem[] = JSON.parse(localProdsRaw);
+                localProds.forEach((lp) => {
+                  if (!deletedIds.includes(lp.id) && !merged.some((mp: any) => mp.id === lp.id)) {
+                    merged.unshift(lp);
+                  }
+                });
+              }
+
+              // Save merged master list back to localStorage
+              localStorage.setItem("endotech_products_list", JSON.stringify(merged));
+            } catch {}
+          }
+          if (merged.length > 0) {
+            setProducts(merged);
+          }
         }
       }
     } catch (err) {
@@ -209,6 +236,12 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       if (typeof window !== "undefined") {
         try {
           localStorage.setItem("endotech_products_list", JSON.stringify(updated));
+          const deletedIdsRaw = localStorage.getItem("endotech_deleted_product_ids");
+          const deletedIds: string[] = deletedIdsRaw ? JSON.parse(deletedIdsRaw) : [];
+          if (!deletedIds.includes(id)) {
+            deletedIds.push(id);
+            localStorage.setItem("endotech_deleted_product_ids", JSON.stringify(deletedIds));
+          }
         } catch {}
       }
       return updated;

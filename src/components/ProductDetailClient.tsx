@@ -596,7 +596,7 @@ export default function ProductDetailClient({
 
               {/* Select Size / Cup Size Options (Pills matching SS 2) */}
               {availableSizes.length > 0 && !(availableSizes.length === 1 && availableSizes[0].label === "Standard") && (
-                <div className="space-y-2 pt-1">
+                <div className="space-y-2.5 pt-1">
                   <span className="text-xs font-bold text-slate-900 block">
                     {sizeSectionLabel}
                   </span>
@@ -610,7 +610,7 @@ export default function ProductDetailClient({
                           onClick={() => handleSizeSelect(opt.label, opt.code)}
                           className={`px-5 py-2.5 rounded-lg text-xs font-bold border transition-all duration-200 cursor-pointer min-w-16 text-center ${
                             isSelected
-                              ? "bg-[#0F172A] text-white border-[#0F172A] shadow-sm"
+                              ? "bg-[#0F172A] text-white border-[#0F172A] shadow-sm ring-2 ring-[#0F172A]/20"
                               : "bg-white text-slate-700 border-slate-300 hover:border-slate-400 hover:bg-slate-50"
                           }`}
                         >
@@ -618,6 +618,35 @@ export default function ProductDetailClient({
                         </button>
                       );
                     })}
+                  </div>
+
+                  {/* Article Number Text Box Right Below Size Buttons (SS 2 Match) */}
+                  <div className="pt-1.5">
+                    <div className="bg-slate-50/90 border border-slate-200 rounded-xl p-3 inline-flex items-center gap-3 shadow-2xs">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                        Article Number:
+                      </span>
+                      <span className="bg-white px-3 py-1 rounded-md border border-slate-200 font-mono text-sm font-black text-slate-900 tracking-tight shadow-xs">
+                        Art. {selectedVariantCode || product.article_code}
+                      </span>
+                      <span className="text-xs text-slate-400 font-medium border-l border-slate-200 pl-2.5">
+                        {selectedSize || "Standard"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* If single or standard size, display Article Number Box as well */}
+              {(!availableSizes.length || (availableSizes.length === 1 && availableSizes[0].label === "Standard")) && (
+                <div className="pt-1">
+                  <div className="bg-slate-50/90 border border-slate-200 rounded-xl p-3 inline-flex items-center gap-3 shadow-2xs">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Article Number:
+                    </span>
+                    <span className="bg-white px-3 py-1 rounded-md border border-slate-200 font-mono text-sm font-black text-slate-900 tracking-tight shadow-xs">
+                      Art. {selectedVariantCode || product.article_code}
+                    </span>
                   </div>
                 </div>
               )}

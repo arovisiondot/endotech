@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useContent, ProductItem } from "@/context/ContentContext";
 import { useInquiry } from "@/context/InquiryContext";
+import MainCategoryCards from "@/components/MainCategoryCards";
 
 /**
  * Character Swipe Animation (0.3 speed, smooth ease)
@@ -218,6 +219,97 @@ export default function SubcategoryCollectionClient({
   const bannerHighlight = pageData.bannerTitleHighlight || "ADVANCED SOLUTIONS.";
   const bannerImage = pageData.bannerImage || "/uploads/1795423436544-Rectangle_854.jpg";
 
+  // Categories list from admin content
+  const categoriesList = useMemo(() => {
+    if (pageData.categories && Array.isArray(pageData.categories) && pageData.categories.length > 0) {
+      return pageData.categories;
+    }
+    return [
+      {
+        id: "cat-gen",
+        name: "General Instrumentation",
+        slug: "general-instrumentation",
+        subcategories: [
+          "Scalpels",
+          "Artery Forceps",
+          "Probes, Applicators, Spatulas",
+          "Anaesthesia",
+          "Bone Surgery",
+          "Tracheotomy",
+          "Urology",
+          "Calipers",
+          "Tonsillectomy, Laryngo-Bronchoscopy",
+          "Cranio-Maxillo-Facial Surgery",
+          "Extracting Forceps",
+          "Scissors",
+          "Cotton Swab Forceps",
+          "Diagnostics",
+          "Suture",
+          "Cardiovascular / Neuro",
+          "Dermatology",
+          "Gynaecology",
+          "Otology",
+          "Hygiene, Storage",
+          "Asepsis",
+          "Dental Elevators",
+          "Forceps",
+          "Retractors",
+          "Trocars, Suction Tubes, Cannulas",
+          "Dressings",
+          "Neurosurgery",
+          "Stomach, Intestines, Rectum",
+          "Obstetrics",
+          "Rhinology",
+          "Oral Maxillo-Facial Surgery",
+          "Needle Holders",
+          "Dental And Oral Surgery",
+        ],
+      },
+      {
+        id: "cat-dental",
+        name: "Dental Instruments",
+        slug: "dental-instruments",
+        subcategories: [
+          "Dental Elevators",
+          "Extracting Forceps",
+          "Scaling Instruments",
+          "Filling Instruments",
+          "Orthodontic Pliers",
+          "Mouth Mirrors & Handles",
+          "Periodontal Probes",
+          "Root Tip Picks",
+        ],
+      },
+      {
+        id: "cat-ent",
+        name: "ENT Instruments",
+        slug: "ent-instruments",
+        subcategories: [
+          "Laryngeal Cup Forceps",
+          "Nose Speculums",
+          "Ear Curettes",
+          "Otology Forceps",
+          "Tuning Forks",
+          "Nasal Snares",
+        ],
+      },
+      {
+        id: "cat-ortho",
+        name: "Orthopedic Instruments",
+        slug: "orthopedic-instruments",
+        subcategories: [
+          "Kerrison Rongeurs",
+          "Bone Punches",
+          "Bone Holding Forceps",
+          "Bone Chisels & Gouges",
+          "Wire Cutters & Pliers",
+          "Mallets & Tampers",
+          "Plate Benders",
+        ],
+      },
+    ];
+  }, [pageData.categories]);
+
   // Filter states
   const [productTypeFilter, setProductTypeFilter] = useState("all");
   const [sizeFilter, setSizeFilter] = useState("all");
@@ -346,7 +438,24 @@ export default function SubcategoryCollectionClient({
         </motion.div>
 
         {/* ================================================================= */}
-        {/* 2. PRODUCT COLLECTION SHOWCASE SECTION (Exact Match to SS 4 & 5)   */}
+        {/* 2. MAIN CATEGORIES CARDS (Continuous Running Light Animation)     */}
+        {/* ================================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200/80"
+        >
+          <MainCategoryCards
+            categories={categoriesList}
+            activeSlug={categorySlug}
+            isLinkMode={true}
+          />
+        </motion.div>
+
+        {/* ================================================================= */}
+        {/* 3. PRODUCT COLLECTION SHOWCASE SECTION (Exact Match to SS 4 & 5)   */}
         {/* ================================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 35, scale: 0.98 }}

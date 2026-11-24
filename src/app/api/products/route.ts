@@ -6,32 +6,67 @@ import { supabase } from "@/lib/supabase";
 const runtimeProductsPath = path.join(process.cwd(), "data/products.json");
 const fallbackProductsPath = path.join(process.cwd(), "src/data/products.json");
 
-function readProducts() {
-  // Check /tmp first if running on Vercel serverless
+// In-memory cache across serverless warm lambdas
+declare global {
+  var __inMemoryProducts: any[] | undefined;
+}
+
+function readProducts(): any[] {
+  // 1. Check in-memory cache first if populated
+  if (global.__inMemoryProducts && Array.isArray(global.__inMemoryProducts) && global.__inMemoryProducts.length > 0) {
+    return global.__inMemoryProducts;
+  }
+
+  // 2. Check /tmp if running on Vercel serverless
   try {
     const tmpPath = path.join("/tmp", "products.json");
     if (fs.existsSync(tmpPath)) {
       const raw = fs.readFileSync(tmpPath, "utf-8");
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        global.__inMemoryProducts = parsed;
+        return parsed;
+      }
     }
   } catch {}
 
+  // 3. Check data/products.json
   if (fs.existsSync(runtimeProductsPath)) {
     try {
       const raw = fs.readFileSync(runtimeProductsPath, "utf-8");
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        global.__inMemoryProducts = parsed;
+        return parsed;
+      }
     } catch {}
   }
+
+  // 4. Check src/data/products.json
   if (fs.existsSync(fallbackProductsPath)) {
     try {
       const raw = fs.readFileSync(fallbackProductsPath, "utf-8");
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        global.__inMemoryProducts = parsed;
+        return parsed;
+      }
     } catch {}
   }
   return [];
 }
 
-function writeProducts(products: unknown[]) {
+function writeProducts(products: any[]) {
+  // Update in-memory cache immediately
+  global.__inMemoryProducts = products;
+
+  // Try writing to /tmp for Vercel lambdas
+  try {
+    const tmpPath = path.join("/tmp", "products.json");
+    fs.writeFileSync(tmpPath, JSON.stringify(products, null, 2), "utf-8");
+  } catch {}
+
+  // Try writing to workspace files if filesystem is writable (local dev / persistent servers)
   try {
     const dataDir = path.join(process.cwd(), "data");
     if (!fs.existsSync(dataDir)) {
@@ -40,16 +75,8 @@ function writeProducts(products: unknown[]) {
     fs.writeFileSync(runtimeProductsPath, JSON.stringify(products, null, 2), "utf-8");
     try {
       fs.writeFileSync(fallbackProductsPath, JSON.stringify(products, null, 2), "utf-8");
-    } catch (e) {
-      console.warn("Could not write fallback products file", e);
-    }
-  } catch (err) {
-    console.warn("Filesystem read-only (Vercel), writing to /tmp:", err);
-    try {
-      const tmpPath = path.join("/tmp", "products.json");
-      fs.writeFileSync(tmpPath, JSON.stringify(products, null, 2), "utf-8");
     } catch {}
-  }
+  } catch {}
 }
 
 export async function GET() {
