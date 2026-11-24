@@ -1311,25 +1311,10 @@ export default function AdminPage() {
     if (!file) return;
 
     setUploadingCategoryCardId(catId);
-    const uploadData = new FormData();
-    uploadData.append("file", file);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: uploadData,
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        const uploadedPath = data.url || data.filePath;
-        if (uploadedPath) {
-          handleUpdateCategory(catId, "image", uploadedPath);
-        } else {
-          alert("File upload completed but no path was returned.");
-        }
-      } else {
-        alert("File upload failed. Please try again.");
+      const uploadedPath = await uploadFileFast(file);
+      if (uploadedPath) {
+        handleUpdateCategory(catId, "image", uploadedPath);
       }
     } catch (err) {
       console.error("Upload error:", err);

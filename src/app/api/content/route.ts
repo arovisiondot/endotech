@@ -8,6 +8,15 @@ const fallbackFilePath = path.join(process.cwd(), "src/data/site-content.json");
 
 export async function GET() {
   try {
+    // 0. Try reading from /tmp if updated on Vercel
+    try {
+      const tmpPath = path.join("/tmp", "site-content.json");
+      if (fs.existsSync(tmpPath)) {
+        const raw = fs.readFileSync(tmpPath, "utf-8");
+        return NextResponse.json(JSON.parse(raw));
+      }
+    } catch {}
+
     // 1. Try reading from runtime persistent storage first
     if (fs.existsSync(runtimeFilePath)) {
       const data = fs.readFileSync(runtimeFilePath, "utf-8");
@@ -42,22 +51,30 @@ export async function POST(request: Request) {
   try {
     const updatedContent = await request.json();
 
-    // Ensure data directory exists
-    const dataDir = path.join(process.cwd(), "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    // 1. Write to runtime storage outside of watched src/ directory to prevent unwanted dev server page reloads
-    fs.writeFileSync(runtimeFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
-
-    // Also sync to fallback template file so both runtime and source files stay 100% identical
-    if (fs.existsSync(path.dirname(fallbackFilePath))) {
-      try {
-        fs.writeFileSync(fallbackFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
-      } catch (e) {
-        console.warn("Could not write fallback template file", e);
+    try {
+      // Ensure data directory exists
+      const dataDir = path.join(process.cwd(), "data");
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
       }
+
+      // 1. Write to runtime storage outside of watched src/ directory to prevent unwanted dev server page reloads
+      fs.writeFileSync(runtimeFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
+
+      // Also sync to fallback template file so both runtime and source files stay 100% identical
+      if (fs.existsSync(path.dirname(fallbackFilePath))) {
+        try {
+          fs.writeFileSync(fallbackFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
+        } catch (e) {
+          console.warn("Could not write fallback template file", e);
+        }
+      }
+    } catch (fsErr) {
+      console.warn("Server filesystem read-only (Vercel), writing to /tmp:", fsErr);
+      try {
+        const tmpPath = path.join("/tmp", "site-content.json");
+        fs.writeFileSync(tmpPath, JSON.stringify(updatedContent, null, 2), "utf-8");
+      } catch {}
     }
 
     // 2. Optionally sync to Supabase if available

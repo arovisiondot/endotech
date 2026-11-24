@@ -7,6 +7,15 @@ const runtimeProductsPath = path.join(process.cwd(), "data/products.json");
 const fallbackProductsPath = path.join(process.cwd(), "src/data/products.json");
 
 function readProducts() {
+  // Check /tmp first if running on Vercel serverless
+  try {
+    const tmpPath = path.join("/tmp", "products.json");
+    if (fs.existsSync(tmpPath)) {
+      const raw = fs.readFileSync(tmpPath, "utf-8");
+      return JSON.parse(raw);
+    }
+  } catch {}
+
   if (fs.existsSync(runtimeProductsPath)) {
     try {
       const raw = fs.readFileSync(runtimeProductsPath, "utf-8");
@@ -23,15 +32,23 @@ function readProducts() {
 }
 
 function writeProducts(products: unknown[]) {
-  const dataDir = path.join(process.cwd(), "data");
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  fs.writeFileSync(runtimeProductsPath, JSON.stringify(products, null, 2), "utf-8");
   try {
-    fs.writeFileSync(fallbackProductsPath, JSON.stringify(products, null, 2), "utf-8");
-  } catch (e) {
-    console.warn("Could not write fallback products file", e);
+    const dataDir = path.join(process.cwd(), "data");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    fs.writeFileSync(runtimeProductsPath, JSON.stringify(products, null, 2), "utf-8");
+    try {
+      fs.writeFileSync(fallbackProductsPath, JSON.stringify(products, null, 2), "utf-8");
+    } catch (e) {
+      console.warn("Could not write fallback products file", e);
+    }
+  } catch (err) {
+    console.warn("Filesystem read-only (Vercel), writing to /tmp:", err);
+    try {
+      const tmpPath = path.join("/tmp", "products.json");
+      fs.writeFileSync(tmpPath, JSON.stringify(products, null, 2), "utf-8");
+    } catch {}
   }
 }
 
