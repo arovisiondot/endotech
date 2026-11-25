@@ -52,7 +52,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [products, setProducts] = useState<ProductItem[]>(initialProductsData);
   const [loading, setLoading] = useState(false);
 
-  // Fetch live content and products from API
+  // Fetch live content and products from Central Cloud API
   const refreshData = useCallback(async () => {
     try {
       const [contentRes, prodRes] = await Promise.all([
@@ -64,50 +64,33 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
         const liveContent = await contentRes.json();
         if (liveContent && liveContent.hero) {
           setContent(liveContent);
+          if (typeof window !== "undefined") {
+            try {
+              localStorage.setItem("endotech_site_content", JSON.stringify(liveContent));
+            } catch {}
+          }
         }
       }
 
       if (prodRes.ok) {
         const liveProducts = await prodRes.json();
-        if (Array.isArray(liveProducts)) {
-          let merged = [...liveProducts];
+        if (Array.isArray(liveProducts) && liveProducts.length > 0) {
+          setProducts(liveProducts);
           if (typeof window !== "undefined") {
             try {
-              // 1. Filter out any products user explicitly deleted
-              const deletedIdsRaw = localStorage.getItem("endotech_deleted_product_ids");
-              const deletedIds: string[] = deletedIdsRaw ? JSON.parse(deletedIdsRaw) : [];
-              if (deletedIds.length > 0) {
-                merged = merged.filter((p: any) => !deletedIds.includes(p.id));
-              }
-
-              // 2. Preserve any user-created products from localStorage that aren't yet in server response
-              const localProdsRaw = localStorage.getItem("endotech_products_list");
-              if (localProdsRaw) {
-                const localProds: ProductItem[] = JSON.parse(localProdsRaw);
-                localProds.forEach((lp) => {
-                  if (!deletedIds.includes(lp.id) && !merged.some((mp: any) => mp.id === lp.id)) {
-                    merged.unshift(lp);
-                  }
-                });
-              }
-
-              // Save merged master list back to localStorage
-              localStorage.setItem("endotech_products_list", JSON.stringify(merged));
+              localStorage.setItem("endotech_products_list", JSON.stringify(liveProducts));
             } catch {}
-          }
-          if (merged.length > 0) {
-            setProducts(merged);
           }
         }
       }
     } catch (err) {
-      console.warn("Could not sync from API, using cached state", err);
+      console.warn("Sync error, continuing with current state:", err);
     }
   }, []);
 
-  // Initial load + periodic polling for multi-device sync
+  // Initial load + real-time cross-device sync polling
   useEffect(() => {
-    // Check localStorage first for instant client persistence
+    // 1. Fast client paint from localStorage cache if available
     if (typeof window !== "undefined") {
       try {
         const savedContent = localStorage.getItem("endotech_site_content");
@@ -123,31 +106,40 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       } catch {}
     }
 
+    // 2. Immediate fetch from Cloud DB
     refreshData();
 
-    // Cross-device sync: poll every 5 seconds so changes on device A appear on device B
+    // 3. Periodic polling (every 4 seconds) so any change on ANY device is instantly reflected everywhere
     const interval = setInterval(() => {
       refreshData();
-    }, 5000);
+    }, 4000);
 
-    // Refresh when user returns to tab
-    const onFocus = () => refreshData();
-    window.addEventListener("focus", onFocus);
+    // 4. Refresh immediately whenever user returns to tab
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refreshData();
+      }
+    };
+    window.addEventListener("focus", refreshData);
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       clearInterval(interval);
-      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("focus", refreshData);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [refreshData]);
 
   // Save full site content
   const saveContent = async (updated: SiteContent): Promise<boolean> => {
+    // Optimistic UI update
     setContent(updated);
     if (typeof window !== "undefined") {
       try {
         localStorage.setItem("endotech_site_content", JSON.stringify(updated));
       } catch {}
     }
+
     try {
       const res = await fetch("/api/content", {
         method: "POST",
@@ -159,7 +151,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       }
       return true;
     } catch (err) {
-      console.error("Save content failed, kept in local state", err);
+      console.error("Save content sync error:", err);
       return true;
     }
   };
@@ -175,15 +167,8 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
         .replace(/(^-|-$)/g, ""),
     };
 
-    setProducts((prev) => {
-      const updated = [newProduct, ...prev];
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem("endotech_products_list", JSON.stringify(updated));
-        } catch {}
-      }
-      return updated;
-    });
+    // Optimistic UI update
+    setProducts((prev) => [newProduct, ...prev.filter((p) => p.id !== newProduct.id)]);
 
     try {
       const res = await fetch("/api/products", {
@@ -196,22 +181,15 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       }
       return true;
     } catch (err) {
-      console.error("Add product server sync failed, kept in local state", err);
+      console.error("Add product server sync failed:", err);
       return true;
     }
   };
 
   // Update existing product
   const updateProduct = async (product: ProductItem): Promise<boolean> => {
-    setProducts((prev) => {
-      const updated = prev.map((p) => (p.id === product.id ? product : p));
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem("endotech_products_list", JSON.stringify(updated));
-        } catch {}
-      }
-      return updated;
-    });
+    // Optimistic UI update
+    setProducts((prev) => prev.map((p) => (p.id === product.id ? product : p)));
 
     try {
       const res = await fetch("/api/products", {
@@ -224,36 +202,26 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       }
       return true;
     } catch (err) {
-      console.error("Update product server sync failed, kept in local state", err);
+      console.error("Update product server sync error:", err);
       return true;
     }
   };
 
   // Delete product
   const deleteProduct = async (id: string): Promise<boolean> => {
-    setProducts((prev) => {
-      const updated = prev.filter((p) => p.id !== id);
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem("endotech_products_list", JSON.stringify(updated));
-          const deletedIdsRaw = localStorage.getItem("endotech_deleted_product_ids");
-          const deletedIds: string[] = deletedIdsRaw ? JSON.parse(deletedIdsRaw) : [];
-          if (!deletedIds.includes(id)) {
-            deletedIds.push(id);
-            localStorage.setItem("endotech_deleted_product_ids", JSON.stringify(deletedIds));
-          }
-        } catch {}
-      }
-      return updated;
-    });
+    // Optimistic UI update
+    setProducts((prev) => prev.filter((p) => p.id !== id));
 
     try {
-      await fetch(`/api/products?id=${encodeURIComponent(id)}`, {
+      const res = await fetch(`/api/products?id=${encodeURIComponent(id)}`, {
         method: "DELETE",
       });
+      if (res.ok) {
+        await refreshData();
+      }
       return true;
     } catch (err) {
-      console.error("Delete product failed", err);
+      console.error("Delete product sync error:", err);
       return true;
     }
   };
@@ -283,4 +251,3 @@ export function useContent() {
   }
   return ctx;
 }
-

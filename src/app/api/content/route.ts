@@ -1,43 +1,116 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 const runtimeFilePath = path.join(process.cwd(), "data/site-content.json");
 const fallbackFilePath = path.join(process.cwd(), "src/data/site-content.json");
 
+// In-memory cache
+declare global {
+  var __inMemoryContentCache: any | undefined;
+  var __inMemoryContentCacheTime: number | undefined;
+}
+
+const CACHE_TTL_MS = 5000; // 5 seconds cache
+
+function getLocalContent(): any {
+  // Check /tmp if running on Vercel
+  try {
+    const tmpPath = path.join("/tmp", "site-content.json");
+    if (fs.existsSync(tmpPath)) {
+      const raw = fs.readFileSync(tmpPath, "utf-8");
+      return JSON.parse(raw);
+    }
+  } catch {}
+
+  // Check data/site-content.json
+  if (fs.existsSync(runtimeFilePath)) {
+    try {
+      const data = fs.readFileSync(runtimeFilePath, "utf-8");
+      return JSON.parse(data);
+    } catch {}
+  }
+
+  // Check fallback template file
+  if (fs.existsSync(fallbackFilePath)) {
+    try {
+      const data = fs.readFileSync(fallbackFilePath, "utf-8");
+      return JSON.parse(data);
+    } catch {}
+  }
+
+  return null;
+}
+
+function saveLocalContent(content: any) {
+  try {
+    const tmpPath = path.join("/tmp", "site-content.json");
+    fs.writeFileSync(tmpPath, JSON.stringify(content, null, 2), "utf-8");
+  } catch {}
+
+  try {
+    const dataDir = path.join(process.cwd(), "data");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    fs.writeFileSync(runtimeFilePath, JSON.stringify(content, null, 2), "utf-8");
+    try {
+      fs.writeFileSync(fallbackFilePath, JSON.stringify(content, null, 2), "utf-8");
+    } catch {}
+  } catch {}
+}
+
 export async function GET() {
   try {
-    // 0. Try reading from /tmp if updated on Vercel
-    try {
-      const tmpPath = path.join("/tmp", "site-content.json");
-      if (fs.existsSync(tmpPath)) {
-        const raw = fs.readFileSync(tmpPath, "utf-8");
-        return NextResponse.json(JSON.parse(raw));
+    const now = Date.now();
+    // 1. In-memory cache
+    if (
+      global.__inMemoryContentCache &&
+      global.__inMemoryContentCacheTime &&
+      now - global.__inMemoryContentCacheTime < CACHE_TTL_MS
+    ) {
+      return NextResponse.json(global.__inMemoryContentCache, {
+        headers: {
+          "Cache-Control": "public, s-maxage=5, stale-while-revalidate=30",
+        },
+      });
+    }
+
+    // 2. Fetch from Supabase Central Database
+    if (isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from("site_content")
+          .select("content")
+          .eq("id", "main")
+          .single();
+
+        if (!error && data?.content) {
+          global.__inMemoryContentCache = data.content;
+          global.__inMemoryContentCacheTime = now;
+
+          return NextResponse.json(data.content, {
+            headers: {
+              "Cache-Control": "public, s-maxage=5, stale-while-revalidate=30",
+            },
+          });
+        }
+      } catch (dbErr) {
+        console.warn("Supabase content GET warning, using local fallback:", dbErr);
       }
-    } catch {}
-
-    // 1. Try reading from runtime persistent storage first
-    if (fs.existsSync(runtimeFilePath)) {
-      const data = fs.readFileSync(runtimeFilePath, "utf-8");
-      return NextResponse.json(JSON.parse(data));
     }
 
-    // 2. Try reading from fallback template file
-    if (fs.existsSync(fallbackFilePath)) {
-      const data = fs.readFileSync(fallbackFilePath, "utf-8");
-      return NextResponse.json(JSON.parse(data));
-    }
-
-    // 3. Fallback to Supabase if available
-    const { data, error } = await supabase
-      .from("site_content")
-      .select("*")
-      .eq("id", "main")
-      .single();
-
-    if (!error && data?.content) {
-      return NextResponse.json(data.content);
+    // 3. Fallback to local files
+    const local = getLocalContent();
+    if (local) {
+      global.__inMemoryContentCache = local;
+      global.__inMemoryContentCacheTime = now;
+      return NextResponse.json(local, {
+        headers: {
+          "Cache-Control": "public, s-maxage=5, stale-while-revalidate=30",
+        },
+      });
     }
 
     return NextResponse.json({ error: "Content not found" }, { status: 404 });
@@ -51,42 +124,25 @@ export async function POST(request: Request) {
   try {
     const updatedContent = await request.json();
 
-    try {
-      // Ensure data directory exists
-      const dataDir = path.join(process.cwd(), "data");
-      if (!fs.existsSync(dataDir)) {
-        fs.mkdirSync(dataDir, { recursive: true });
-      }
-
-      // 1. Write to runtime storage outside of watched src/ directory to prevent unwanted dev server page reloads
-      fs.writeFileSync(runtimeFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
-
-      // Also sync to fallback template file so both runtime and source files stay 100% identical
-      if (fs.existsSync(path.dirname(fallbackFilePath))) {
-        try {
-          fs.writeFileSync(fallbackFilePath, JSON.stringify(updatedContent, null, 2), "utf-8");
-        } catch (e) {
-          console.warn("Could not write fallback template file", e);
-        }
-      }
-    } catch (fsErr) {
-      console.warn("Server filesystem read-only (Vercel), writing to /tmp:", fsErr);
+    // 1. Sync to Supabase Central Database
+    if (isSupabaseConfigured()) {
       try {
-        const tmpPath = path.join("/tmp", "site-content.json");
-        fs.writeFileSync(tmpPath, JSON.stringify(updatedContent, null, 2), "utf-8");
-      } catch {}
+        await supabase.from("site_content").upsert({
+          id: "main",
+          content: updatedContent,
+          updated_at: new Date().toISOString(),
+        });
+      } catch (err) {
+        console.warn("Supabase content POST warning:", err);
+      }
     }
 
-    // 2. Optionally sync to Supabase if available
-    try {
-      await supabase.from("site_content").upsert({
-        id: "main",
-        content: updatedContent,
-        updated_at: new Date().toISOString(),
-      });
-    } catch {
-      // Supabase is optional fallback
-    }
+    // 2. Update local fallback storage
+    saveLocalContent(updatedContent);
+
+    // Invalidate in-memory cache
+    global.__inMemoryContentCache = updatedContent;
+    global.__inMemoryContentCacheTime = Date.now();
 
     return NextResponse.json({
       success: true,
