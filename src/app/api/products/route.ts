@@ -1,20 +1,32 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
-// ─── GET: سب products لاؤ ───────────────────────────────────────────────────
+// ─── GET: سب products لاؤ (with pagination for >1000 rows) ─────────────────
 export async function GET() {
   try {
-    const { data, error } = await supabase
-      .from("products")
-      .select("*")
-      .order("created_at", { ascending: false });
+    const allRows: any[] = [];
+    const pageSize = 1000;
+    let from = 0;
 
-    if (error) {
-      console.error("GET products error:", error.message);
-      return NextResponse.json([], { status: 200 });
+    while (true) {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .range(from, from + pageSize - 1);
+
+      if (error) {
+        console.error("GET products error:", error.message);
+        break;
+      }
+
+      if (!data || data.length === 0) break;
+      allRows.push(...data);
+      if (data.length < pageSize) break;
+      from += pageSize;
     }
 
-    const formatted = (data || []).map((row: any) => ({
+    const formatted = allRows.map((row: any) => ({
       id: row.id,
       code: row.code || "",
       name: row.name || "",
