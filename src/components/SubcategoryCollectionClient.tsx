@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Search,
@@ -213,6 +214,7 @@ export default function SubcategoryCollectionClient({
 }) {
   const { content, products } = useContent();
   const { addItem } = useInquiry();
+  const router = useRouter();
 
   const pageData = (content as any)?.productPage || {};
   const bannerTitle1 = pageData.bannerTitleLine1 || "RELIABLE HEALTHCARE PRODUCTS.";
@@ -310,9 +312,32 @@ export default function SubcategoryCollectionClient({
     ];
   }, [pageData.categories]);
 
+  // Active Main Category & its Subcategories (dynamically synced with Admin / ContentContext)
+  const currentMainCategory = useMemo(() => {
+    const normTarget = categorySlug.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return (
+      categoriesList.find(
+        (c: any) =>
+          (c.slug || "").toLowerCase().replace(/[^a-z0-9]/g, "") === normTarget ||
+          (c.name || "").toLowerCase().replace(/[^a-z0-9]/g, "") === normTarget
+      ) || categoriesList[0]
+    );
+  }, [categoriesList, categorySlug]);
+
+  const currentSubcategories: string[] = useMemo(() => {
+    const subs: string[] = Array.isArray(currentMainCategory?.subcategories)
+      ? currentMainCategory.subcategories
+      : [];
+    if (
+      subcategoryName &&
+      !subs.some((s) => s.toLowerCase() === subcategoryName.toLowerCase())
+    ) {
+      return [subcategoryName, ...subs];
+    }
+    return subs;
+  }, [currentMainCategory, subcategoryName]);
+
   // Filter states
-  const [productTypeFilter, setProductTypeFilter] = useState("all");
-  const [sizeFilter, setSizeFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
@@ -484,40 +509,30 @@ export default function SubcategoryCollectionClient({
             </div>
           </div>
 
-          {/* Controls Bar: Product Type, Handle Size, Search by Name/Code, Sort By (SS 4) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Product Type */}
+          {/* Controls Bar: Subcategory (Product Type), Search by Name/Code, Sort By */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Subcategory / Product Type Dropdown (shows opened subcategory & all subcategories of active main category) */}
             <div className="relative">
               <select
-                value={productTypeFilter}
-                onChange={(e) => setProductTypeFilter(e.target.value)}
+                value={
+                  currentSubcategories.find(
+                    (s) => s.toLowerCase() === subcategoryName.toLowerCase()
+                  ) || subcategoryName
+                }
+                onChange={(e) => {
+                  const nextSub = e.target.value;
+                  setCurrentPage(1);
+                  router.push(
+                    `/products/collection?category=${encodeURIComponent(categorySlug)}&subcategory=${encodeURIComponent(nextSub)}`
+                  );
+                }}
                 className="w-full appearance-none bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 text-xs sm:text-sm font-semibold rounded-lg px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-[#1B459B]/20 cursor-pointer"
               >
-                <option value="all">Product Type (All)</option>
-                <option value="reusable">Reusable</option>
-                <option value="single-use">Single-Use</option>
-                <option value="sterile">Sterile Kitted</option>
-              </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Handle Size / Pattern */}
-            <div className="relative">
-              <select
-                value={sizeFilter}
-                onChange={(e) => setSizeFilter(e.target.value)}
-                className="w-full appearance-none bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 text-xs sm:text-sm font-semibold rounded-lg px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-[#1B459B]/20 cursor-pointer"
-              >
-                <option value="all">Handle Size / All</option>
-                <option value="standard">Standard</option>
-                <option value="11.5cm">11.5 cm</option>
-                <option value="13.5cm">13.5 cm</option>
-                <option value="16cm">16 cm</option>
-                <option value="21cm">21 cm</option>
+                {currentSubcategories.map((sub) => (
+                  <option key={sub} value={sub}>
+                    {sub}
+                  </option>
+                ))}
               </select>
               <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
                 <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -533,7 +548,10 @@ export default function SubcategoryCollectionClient({
                 type="text"
                 placeholder="Search by name or code"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setCurrentPage(1);
+                }}
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 hover:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1B459B]/20"
               />
             </div>
@@ -542,7 +560,10 @@ export default function SubcategoryCollectionClient({
             <div className="relative">
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  setCurrentPage(1);
+                }}
                 className="w-full appearance-none bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 text-xs sm:text-sm font-semibold rounded-lg px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-[#1B459B]/20 cursor-pointer"
               >
                 <option value="featured">Sort by: Featured</option>

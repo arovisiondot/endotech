@@ -758,57 +758,507 @@
     "subtitle": "Access our official high-resolution PDF catalogues featuring over 10,000 surgical, dental, ENT, and orthopedic instruments with full technical dimensions and article codes.",
     "catalogs": [
       {
-        "id": "cat-1",
-        "title": "General Surgery Complete Catalogue",
-        "category_name": "General Surgery aromatic ",
-        "description": "Comprehensive guide to scalpels, forceps, scissors, retractors, needle holders, and general surgical instruments.",
-        "file_url": "/uploads/1795493133579-Endo_Tech_Surgical_Instruments_Catalog.pdf",
-        "file_size": "18.4 MB",
-        "downloads_count": 3420
-      },
-      {
-        "id": "cat-2",
-        "title": "Dental & Oral Surgery Catalogue",
-        "category_name": "Dental Instruments",
-        "description": "Extracting forceps, dental elevators, scaling instruments, filling tools, and orthodontic pliers.",
-        "file_url": "/catalogs/dental-instruments.pdf",
-        "file_size": "14.2 MB",
-        "downloads_count": 2180
-      },
-      {
-        "id": "cat-3",
-        "title": "ENT & Laryngeal Instruments Catalogue",
-        "category_name": "ENT Instruments",
-        "description": "Micro-laryngeal cup forceps, ear curettes, nasal speculums, and otology instruments.",
-        "file_url": "/catalogs/ent-instruments.pdf",
-        "file_size": "11.6 MB",
-        "downloads_count": 1890
-      },
-      {
-        "id": "cat-4",
-        "title": "Orthopedics & Spine Catalogue",
-        "category_name": "Orthopedic Instruments",
-        "description": "Kerrison rongeurs, bone punches, bone holding forceps, chisels, mallets, and plate benders.",
-        "file_url": "/catalogs/orthopedics.pdf",
-        "file_size": "22.1 MB",
-        "downloads_count": 2740
-      },
-      {
-        "id": "cat-1795493137171",
-        "title": "New Surgical Catalogue",
-        "category_name": "General Surgery",
-        "description": "Comprehensive guide to specialized medical instruments.",
-        "file_url": "/catalogs/general-surgery.pdf",
-        "file_size": "15.0 MB",
+        "id": "old-cat-1",
+        "title": "General Forceps",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "General Forceps — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/General_Forceps.pdf",
+        "file_size": "9.8 MB",
         "downloads_count": 1000
       },
       {
-        "id": "cat-1795493236063",
-        "title": "New Surgical Catalogue",
-        "category_name": "General Surgery",
-        "description": "Comprehensive guide to specialized medical instruments.",
-        "file_url": "/catalogs/general-surgery.pdf",
-        "file_size": "15.0 MB",
+        "id": "old-cat-2",
+        "title": "Laryngoscope",
+        "category_name": "Surgical Instruments",
+        "description": "Laryngoscope — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/Catalouge-Laryngsocope.pdf",
+        "file_size": "3.6 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-3",
+        "title": "Kerrison Ronguer",
+        "category_name": "Kerrison Rongeur",
+        "description": "Kerrison Ronguer — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/Kerrison-Ronguer.pdf",
+        "file_size": "1.5 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-4",
+        "title": "Arthroscopy Instruments",
+        "category_name": "Surgical Instruments",
+        "description": "Arthroscopy Instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ENDO-TECH.pdf",
+        "file_size": "52.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-5",
+        "title": "ENT Instruments",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "ENT Instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/Ent-Endo-Catalouge-01.pdf",
+        "file_size": "13.9 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-6",
+        "title": "Thorax & Cardiovascular",
+        "category_name": "Surgical Instruments",
+        "description": "Thorax & Cardiovascular — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/200_-_Thorax_Cardiovascular_(1).pdf",
+        "file_size": "6.6 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-7",
+        "title": "Scaple",
+        "category_name": "Surgical Instruments",
+        "description": "Scaple — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-105-_Scalpel.pdf",
+        "file_size": "4.5 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-8",
+        "title": "ANESTHESIA INSTRUM",
+        "category_name": "Surgical Instruments",
+        "description": "ANESTHESIA INSTRUM — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-100_-_ANESTHESIA_INSTRUM.pdf",
+        "file_size": "4.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-9",
+        "title": "Diagnostic",
+        "category_name": "Surgical Instruments",
+        "description": "Diagnostic — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-110_-_Diagnostic.pdf",
+        "file_size": "4.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-10",
+        "title": "Scissors",
+        "category_name": "Surgical Instruments",
+        "description": "Scissors — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-115-_Scissors.pdf",
+        "file_size": "15.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-11",
+        "title": "DISSECTING FORCEP",
+        "category_name": "Surgical Instruments",
+        "description": "DISSECTING FORCEP — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-120-_DISSECTING_FORCEP.pdf",
+        "file_size": "9.9 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-12",
+        "title": "SUTURE",
+        "category_name": "Surgical Instruments",
+        "description": "SUTURE — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-130-_SUTURE.pdf",
+        "file_size": "7.6 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-13",
+        "title": "RETRACTORS",
+        "category_name": "Surgical Instruments",
+        "description": "RETRACTORS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-135-_RETRACTORS.pdf",
+        "file_size": "8.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-14",
+        "title": "GYNECOLOGY",
+        "category_name": "Surgical Instruments",
+        "description": "GYNECOLOGY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-150-_GYNECOLOGY.pdf",
+        "file_size": "6.5 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-15",
+        "title": "Cotton & Swab For DR",
+        "category_name": "Surgical Instruments",
+        "description": "Cotton & Swab For DR — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-155-_Cotton_Swab_and_Dr.pdf",
+        "file_size": "3.8 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-16",
+        "title": "Probes Applecation-spetulas",
+        "category_name": "Surgical Instruments",
+        "description": "Probes Applecation-spetulas — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-160_-_Probes%2C_Applecation-spetulas.pdf",
+        "file_size": "3.5 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-17",
+        "title": "Dressing instruments",
+        "category_name": "Surgical Instruments",
+        "description": "Dressing instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-165-_Dressing_instrume.pdf",
+        "file_size": "3.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-18",
+        "title": "Bone Surgery",
+        "category_name": "Surgical Instruments",
+        "description": "Bone Surgery — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-170_Bone_Surgery.pdf",
+        "file_size": "6.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-19",
+        "title": "Dermatology Instruments",
+        "category_name": "Surgical Instruments",
+        "description": "Dermatology Instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-175-_Dermatology_Instru.pdf",
+        "file_size": "4.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-20",
+        "title": "OTOLOGY INSTRUMENT",
+        "category_name": "Surgical Instruments",
+        "description": "OTOLOGY INSTRUMENT — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-180-_OTOLOGY_INSTRUMENT.pdf",
+        "file_size": "6.3 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-21",
+        "title": "Neurosurgery Instrument",
+        "category_name": "Surgical Instruments",
+        "description": "Neurosurgery Instrument — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-185_-_Neurosurgery_Instrument.pdf",
+        "file_size": "5.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-22",
+        "title": "Trocars, Suction",
+        "category_name": "Surgical Instruments",
+        "description": "Trocars, Suction — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-190_-_Trocars%2C_Suction_T.pdf",
+        "file_size": "4.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-23",
+        "title": "Tracheotomy Instruments",
+        "category_name": "Surgical Instruments",
+        "description": "Tracheotomy Instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-195-_Tracheotomy_Instru.pdf",
+        "file_size": "3.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-24",
+        "title": "RHINOLOGY INSTRUMENETS",
+        "category_name": "Surgical Instruments",
+        "description": "RHINOLOGY INSTRUMENETS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-205_-_RHINOLOGY_INSTRUME.pdf",
+        "file_size": "6.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-25",
+        "title": "ORAL & MAXILLOFACI",
+        "category_name": "Surgical Instruments",
+        "description": "ORAL & MAXILLOFACI — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-210-_ORAL_MAXILLOFACI.pdf",
+        "file_size": "4.8 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-26",
+        "title": "STOMACH, INTESTINE",
+        "category_name": "Surgical Instruments",
+        "description": "STOMACH, INTESTINE — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-220-_STOMACH%2C_INTESTINE.pdf",
+        "file_size": "7.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-27",
+        "title": "STERLIZATION EQUIP",
+        "category_name": "Surgical Instruments",
+        "description": "STERLIZATION EQUIP — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-225-_STERLIZATION_EQUIP.pdf",
+        "file_size": "5.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-28",
+        "title": "HOLLOWARE",
+        "category_name": "Surgical Instruments",
+        "description": "HOLLOWARE — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-230-_HOLLOWARE.pdf",
+        "file_size": "3.9 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-29",
+        "title": "PODIATRY",
+        "category_name": "Surgical Instruments",
+        "description": "PODIATRY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-235-_-_PODIATRY.pdf",
+        "file_size": "5.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-30",
+        "title": "Ophthalmic Instruments",
+        "category_name": "Surgical Instruments",
+        "description": "Ophthalmic Instruments — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ETI-140-Ophthalmic_Instruments.pdf",
+        "file_size": "7.8 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-31",
+        "title": "ANAESTHESIA",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "ANAESTHESIA — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ANAESTHESIA.pdf",
+        "file_size": "17.8 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-32",
+        "title": "DIAGNOSTICS",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "DIAGNOSTICS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/DIAGNOSTICS.pdf",
+        "file_size": "15.5 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-33",
+        "title": "EXTRACTING FORCEPS",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "EXTRACTING FORCEPS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/EXTRACTING_FORCEPS.pdf",
+        "file_size": "69.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-34",
+        "title": "IMPLANTOLOGY",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "IMPLANTOLOGY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/IMPLANTOLOGY.pdf",
+        "file_size": "58.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-35",
+        "title": "IMPRESSION",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "IMPRESSION — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/IMPRESSION1.pdf",
+        "file_size": "18.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-36",
+        "title": "LABORATORY",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "LABORATORY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/LABORATORY.pdf",
+        "file_size": "42.8 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-37",
+        "title": "ORTHODONTIC",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "ORTHODONTIC — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ORTHODONTIC.pdf",
+        "file_size": "50.9 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-38",
+        "title": "PERIODONTAL",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "PERIODONTAL — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/PERIODONTAL.pdf",
+        "file_size": "0.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-39",
+        "title": "Restorative",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "Restorative — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/Restorative.pdf",
+        "file_size": "20.3 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-40",
+        "title": "STERILIZATION",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "STERILIZATION — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/STERILIZATION.pdf",
+        "file_size": "22.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-41",
+        "title": "SURGERY",
+        "category_name": "DENTAL INSTRUMENT",
+        "description": "SURGERY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/SURGERY.pdf",
+        "file_size": "75.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-42",
+        "title": "EAR SPECULA",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "EAR SPECULA — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/EAR_SPECULA.pdf",
+        "file_size": "4.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-43",
+        "title": "EAR AND NOSE DRESSING FORCEPS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "EAR AND NOSE DRESSING FORCEPS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/EAR_AND_NOSE_DRESSING_FORCEPS.pdf",
+        "file_size": "3.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-44",
+        "title": "SUCTION TUBES",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "SUCTION TUBES — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/SUCTION_TUBES.pdf",
+        "file_size": "3.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-45",
+        "title": "EAR FORCEPS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "EAR FORCEPS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/EAR_FORCEPS.pdf",
+        "file_size": "6.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-46",
+        "title": "NASAL SPECULA",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "NASAL SPECULA — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/NASAL_SPECULA.pdf",
+        "file_size": "2.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-47",
+        "title": "NASAL SCISSORS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "NASAL SCISSORS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/NASAL_SCISSORS.pdf",
+        "file_size": "2.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-48",
+        "title": "NASAL RASPS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "NASAL RASPS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/NASAL_RASPS.pdf",
+        "file_size": "2.4 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-49",
+        "title": "OSTEOTOMES CHISELS,",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "OSTEOTOMES CHISELS, — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/OSTEOTOMES_CHISELS%2C.pdf",
+        "file_size": "2.9 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-50",
+        "title": "PUNCHES BONE",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "PUNCHES BONE — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/PUNCHES_BONE.pdf",
+        "file_size": "2.0 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-51",
+        "title": "MICRO INSTRUMENTS FOR LARYNGOLOGY",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "MICRO INSTRUMENTS FOR LARYNGOLOGY — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/MICRO_INSTRUMENTS_FOR_LARYNGOLOGY.pdf",
+        "file_size": "4.7 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-52",
+        "title": "HAEMOSTATIC FORCEPS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "HAEMOSTATIC FORCEPS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/HAEMOSTATIC_FORCEPS.pdf",
+        "file_size": "5.2 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-53",
+        "title": "NEEDLE HOLDERS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "NEEDLE HOLDERS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/NEEDLE_HOLDERS.pdf",
+        "file_size": "3.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-54",
+        "title": "SCISSORS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "SCISSORS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/SCISSORS.pdf",
+        "file_size": "2.1 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-55",
+        "title": "Spinal Instruments Kerrison Rongeurs",
+        "category_name": "Orthopedics INSTRUMENT",
+        "description": "Spinal Instruments Kerrison Rongeurs — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/Spinal_Instruments.pdf",
+        "file_size": "40.3 MB",
+        "downloads_count": 1000
+      },
+      {
+        "id": "old-cat-56",
+        "title": "GENERAL ENT INSTRUMENTS",
+        "category_name": "ENT (Ear, Nose, Throat)",
+        "description": "GENERAL ENT INSTRUMENTS — Official Endo Tech Surgical Instruments PDF Catalogue.",
+        "file_url": "https://www.endotech.com.pk/uploads/digital_uploads/ENT-INSTRUMENTS1.pdf",
+        "file_size": "15.9 MB",
         "downloads_count": 1000
       }
     ]
