@@ -315,6 +315,8 @@ export default function SubcategoryCollectionClient({
   const [sizeFilter, setSizeFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PRODUCTS_PER_PAGE = 24;
   const [zoomModalImage, setZoomModalImage] = useState<string | null>(null);
   const [addedNotice, setAddedNotice] = useState<string | null>(null);
 
@@ -440,11 +442,7 @@ export default function SubcategoryCollectionClient({
         {/* ================================================================= */}
         {/* 2. MAIN CATEGORIES CARDS (Continuous Running Light Animation)     */}
         {/* ================================================================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+        <div
           className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200/80"
         >
           <MainCategoryCards
@@ -452,16 +450,12 @@ export default function SubcategoryCollectionClient({
             activeSlug={categorySlug}
             isLinkMode={true}
           />
-        </motion.div>
+        </div>
 
         {/* ================================================================= */}
         {/* 3. PRODUCT COLLECTION SHOWCASE SECTION (Exact Match to SS 4 & 5)   */}
         {/* ================================================================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+        <div
           className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-sm border border-slate-200/80 space-y-8"
         >
           {/* Header Row: Title & Subtitle */}
@@ -614,16 +608,17 @@ export default function SubcategoryCollectionClient({
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {matchingProducts.map((prod: ProductItem, pIdx: number) => {
+              {matchingProducts
+                .slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE)
+                .map((prod: ProductItem, pIdx: number) => {
                 const detailSlug = prod.slug || prod.id;
 
                 return (
                   <motion.div
                     key={prod.id || pIdx}
-                    initial={{ opacity: 0, y: 25, scale: 0.98 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: false, amount: 0.1 }}
-                    transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1], delay: pIdx * 0.08 }}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeOut", delay: Math.min(pIdx, 8) * 0.03 }}
                     className="bg-white rounded-2xl border border-slate-200/90 hover:border-[#1B459B]/50 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between overflow-hidden group"
                   >
                     {/* Top Product Image Container with Zoom Button */}
@@ -643,6 +638,7 @@ export default function SubcategoryCollectionClient({
                         <img
                           src={prod.image}
                           alt={prod.name}
+                          loading="lazy"
                           className="max-h-full max-w-full object-contain filter contrast-[1.03] transition-transform duration-500 group-hover:scale-106"
                         />
                       </Link>
@@ -657,12 +653,7 @@ export default function SubcategoryCollectionClient({
 
                         <Link href={`/products/${detailSlug}`} className="block group/title">
                           <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-snug group-hover/title:text-[#1B459B] transition-colors">
-                            <CharSwipeLine
-                              text={prod.name}
-                              textColor="#0F172A"
-                              hoverColor="#1B459B"
-                              baseDelay={0.02}
-                            />
+                            {prod.name}
                           </h3>
                         </Link>
 
@@ -698,32 +689,51 @@ export default function SubcategoryCollectionClient({
           )}
 
           {/* Pagination Controls Row - ONLY show when products exist */}
-          {matchingProducts.length > 0 && (
-            <div className="pt-6 flex flex-col items-center justify-center gap-3 border-t border-slate-100">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
-                <button
-                  type="button"
-                  className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition"
-                  disabled
-                >
-                  &lsaquo;
-                </button>
-                <button
-                  type="button"
-                  className="w-8 h-8 rounded-lg bg-[#ED1C24] text-white flex items-center justify-center shadow-xs"
-                >
-                  1
-                </button>
-                <button
-                  type="button"
-                  className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition"
-                  disabled
-                >
-                  &rsaquo;
-                </button>
+          {matchingProducts.length > PRODUCTS_PER_PAGE && (() => {
+            const totalPages = Math.ceil(matchingProducts.length / PRODUCTS_PER_PAGE);
+            return (
+              <div className="pt-6 flex flex-col items-center justify-center gap-3 border-t border-slate-100">
+                <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
+                  <button
+                    type="button"
+                    onClick={() => { setCurrentPage(1); window.scrollTo({ top: 350, behavior: "smooth" }); }}
+                    disabled={currentPage <= 1}
+                    className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 transition"
+                  >
+                    &laquo;
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setCurrentPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 350, behavior: "smooth" }); }}
+                    disabled={currentPage <= 1}
+                    className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 transition"
+                  >
+                    &lsaquo;
+                  </button>
+                  <span className="px-3 text-slate-700">
+                    Page <strong className="text-slate-900">{currentPage}</strong> of{" "}
+                    <strong className="text-slate-900">{totalPages}</strong>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => { setCurrentPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 350, behavior: "smooth" }); }}
+                    disabled={currentPage >= totalPages}
+                    className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 transition"
+                  >
+                    &rsaquo;
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setCurrentPage(totalPages); window.scrollTo({ top: 350, behavior: "smooth" }); }}
+                    disabled={currentPage >= totalPages}
+                    className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 transition"
+                  >
+                    &raquo;
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Bottom Callout Banner (Find the right instrument... [Contact our team ->]) */}
           <div className="bg-[#F1F5F9] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-200/80">
@@ -738,16 +748,6 @@ export default function SubcategoryCollectionClient({
             </Link>
           </div>
 
-        </motion.div>
-
-        {/* Back to Products Overview Link */}
-        <div className="text-center pt-2">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-slate-300 text-xs font-bold text-slate-700 hover:border-[#1B459B] hover:text-[#1B459B] transition-colors"
-          >
-            &larr; Back to all 33 categories
-          </Link>
         </div>
 
       </div>

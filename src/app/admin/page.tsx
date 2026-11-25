@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import {
   ShieldAlert,
+  Search,
   Save,
   Plus,
   Trash2,
@@ -374,6 +375,10 @@ export default function AdminPage() {
     deleteProduct,
     refreshData,
   } = useContent();
+
+  const [adminProductPage, setAdminProductPage] = useState(1);
+  const [adminProductSearch, setAdminProductSearch] = useState("");
+  const ADMIN_PRODUCTS_PER_PAGE = 50;
 
   const [activeTab, setActiveTabState] = useState<
     | "hero"
@@ -5986,6 +5991,47 @@ export default function AdminPage() {
                   </button>
                 </div>
 
+                {/* Search & Pagination Bar */}
+                {(() => {
+                  const q = adminProductSearch.trim().toLowerCase();
+                  const filteredAdminProducts = q
+                    ? products.filter(
+                        (p) =>
+                          (p.name || "").toLowerCase().includes(q) ||
+                          (p.code || "").toLowerCase().includes(q) ||
+                          (p.category || "").toLowerCase().includes(q) ||
+                          (p.subcategory || "").toLowerCase().includes(q)
+                      )
+                    : products;
+                  const totalPages = Math.max(1, Math.ceil(filteredAdminProducts.length / ADMIN_PRODUCTS_PER_PAGE));
+                  const safePage = Math.min(adminProductPage, totalPages);
+                  const paginatedProducts = filteredAdminProducts.slice(
+                    (safePage - 1) * ADMIN_PRODUCTS_PER_PAGE,
+                    safePage * ADMIN_PRODUCTS_PER_PAGE
+                  );
+
+                  return (
+                    <>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+                        <div className="relative w-full sm:w-80">
+                          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="text"
+                            placeholder="Search products by name, code, category..."
+                            value={adminProductSearch}
+                            onChange={(e) => {
+                              setAdminProductSearch(e.target.value);
+                              setAdminProductPage(1);
+                            }}
+                            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1B459B]/20"
+                          />
+                        </div>
+                        <div className="text-xs font-semibold text-slate-500">
+                          Showing {filteredAdminProducts.length === 0 ? 0 : (safePage - 1) * ADMIN_PRODUCTS_PER_PAGE + 1}
+                          –{Math.min(safePage * ADMIN_PRODUCTS_PER_PAGE, filteredAdminProducts.length)} of {filteredAdminProducts.length} products
+                        </div>
+                      </div>
+
                 {/* Products Table */}
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
@@ -6000,7 +6046,7 @@ export default function AdminPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
-                      {products.map((p) => (
+                      {paginatedProducts.map((p) => (
                         <tr key={p.id} className="hover:bg-slate-50 transition">
                           <td className="py-2.5 px-4">
                             <div className="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200 p-1 flex items-center justify-center">
@@ -6008,6 +6054,7 @@ export default function AdminPage() {
                               <img
                                 src={p.image}
                                 alt={p.name}
+                                loading="lazy"
                                 className="max-h-full max-w-full object-contain"
                               />
                             </div>
@@ -6079,6 +6126,53 @@ export default function AdminPage() {
                     </tbody>
                   </table>
                 </div>
+
+                      {/* Pagination Controls (SS 2 style) */}
+                      <div className="pt-4 border-t border-slate-200 flex items-center justify-center gap-3 text-xs font-semibold text-slate-700 select-none">
+                        <button
+                          type="button"
+                          onClick={() => setAdminProductPage(1)}
+                          disabled={safePage <= 1}
+                          className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed transition"
+                          title="First Page"
+                        >
+                          &laquo;
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setAdminProductPage((p) => Math.max(1, p - 1))}
+                          disabled={safePage <= 1}
+                          className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed transition"
+                          title="Previous Page"
+                        >
+                          &lsaquo;
+                        </button>
+                        <span className="px-2 text-slate-700">
+                          Page <strong className="text-slate-900">{safePage}</strong> of{" "}
+                          <strong className="text-slate-900">{totalPages}</strong>
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setAdminProductPage((p) => Math.min(totalPages, p + 1))}
+                          disabled={safePage >= totalPages}
+                          className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed transition"
+                          title="Next Page"
+                        >
+                          &rsaquo;
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setAdminProductPage(totalPages)}
+                          disabled={safePage >= totalPages}
+                          className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed transition"
+                          title="Last Page"
+                        >
+                          &raquo;
+                        </button>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             )}
 

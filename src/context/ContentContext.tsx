@@ -76,11 +76,6 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
         const liveProducts = await prodRes.json();
         if (Array.isArray(liveProducts) && liveProducts.length > 0) {
           setProducts(liveProducts);
-          if (typeof window !== "undefined") {
-            try {
-              localStorage.setItem("endotech_products_list", JSON.stringify(liveProducts));
-            } catch {}
-          }
         }
       }
     } catch (err) {
@@ -88,9 +83,8 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Initial load + real-time cross-device sync polling
+  // Initial load once on mount (no heavy 4-second polling)
   useEffect(() => {
-    // 1. Fast client paint from localStorage cache if available
     if (typeof window !== "undefined") {
       try {
         const savedContent = localStorage.getItem("endotech_site_content");
@@ -98,36 +92,10 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
           const parsed = JSON.parse(savedContent);
           if (parsed && parsed.hero) setContent(parsed);
         }
-        const savedProds = localStorage.getItem("endotech_products_list");
-        if (savedProds) {
-          const parsed = JSON.parse(savedProds);
-          if (Array.isArray(parsed) && parsed.length > 0) setProducts(parsed);
-        }
       } catch {}
     }
 
-    // 2. Immediate fetch from Cloud DB
     refreshData();
-
-    // 3. Periodic polling (every 4 seconds) so any change on ANY device is instantly reflected everywhere
-    const interval = setInterval(() => {
-      refreshData();
-    }, 4000);
-
-    // 4. Refresh immediately whenever user returns to tab
-    const onVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        refreshData();
-      }
-    };
-    window.addEventListener("focus", refreshData);
-    document.addEventListener("visibilitychange", onVisibilityChange);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener("focus", refreshData);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-    };
   }, [refreshData]);
 
   // Save full site content
